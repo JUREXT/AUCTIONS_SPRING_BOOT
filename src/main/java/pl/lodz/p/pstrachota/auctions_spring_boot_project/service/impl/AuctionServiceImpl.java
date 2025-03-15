@@ -43,8 +43,9 @@ public class AuctionServiceImpl implements AuctionService {
 
     public Auction createAuction(AuctionRequest auctionRequest, UserDetails userDetails) {
 
-        User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(
-                () -> new NotFoundException("User not found"));
+        User user = userRepository
+                .findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new NotFoundException("User not found"));
 
         Auction auction = AuctionDtoMapper.mapAuctionRequestToAuction(auctionRequest);
         auction.setUser(user);
